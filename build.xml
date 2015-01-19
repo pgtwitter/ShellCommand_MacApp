@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project default="build">
+	<property name="javahome" location="/Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk/Contents/Home" />
+	
+	<property name="src" location="src" />
+	<property name="build" location="build" />
+	<property name="install" location="ShellCommand_MacApp.app/Contents/Resources/Java" />
+	<property name="iconfile" location="ShellCommand_MacApp.app/Contents/Resources/ShellCommand_MacApp.icns" />
+
+	<target name="build" depends="clean">
+		<mkdir dir="${build}" />
+		<copy todir="${build}" file="${iconfile}" />
+		<javac srcdir="${src}" destdir="${build}" classpath="${javahome}/jre/lib/**/*.jar" source="1.6" target="1.6">
+			<compilerarg value="-XDignore.symbol.file" />
+		</javac>
+		<mkdir dir="${install}" />
+		<jar basedir="build" jarfile="${install}/ShellCommand_MacApp.jar">
+			<manifest>
+				<attribute name="Main-Class" value="ShellCommand_MacApp.ShellCommand_MacApp" />
+			</manifest>
+		</jar>
+	</target>
+
+	<target name="clean">
+		<delete dir="${build}" />
+		<mkdir dir="${build}" />
+		<delete file="${install}/ShellCommand_MacApp.jar" />
+	</target>
+</project>

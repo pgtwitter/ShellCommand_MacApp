@@ -1,0 +1,3 @@
+*.class
+.project
+ShellCommand_MacApp.app/Contents/Resources/Java/ShellCommand_MacApp.jar
